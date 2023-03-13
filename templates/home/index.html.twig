@@ -8,11 +8,11 @@
 
     <header>
         {% if app.user %}
-            <button><a href="{{ path('app_logout') }}">Se déconnecter</a></button>
+            <button class="btn btn-primary"><a class="color-text" href="{{ path('app_logout') }}">Se déconnecter</a></button>
 
             {% else %}
-                <button><a href="{{ path('app_login') }}">Se connecter</a></button>
-                <button><a href="{{ path('app_register') }}">S'enregistrer</a></button>
+                <button class="btn btn-primary"><a class="color-text" href="{{ path('app_login') }}">Se connecter</a></button>
+                <button class="btn btn-primary"><a class="color-text" href="{{ path('app_register') }}">S'enregistrer</a></button>
         {% endif %}
 
     </header>
