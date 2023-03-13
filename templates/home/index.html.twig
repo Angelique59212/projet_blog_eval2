@@ -11,6 +11,8 @@
 {#        <button><a href="{{ path('app_register') }}">S'enregistrer</a></button>#}
 {#    </header>#}
 
+    <a href="{{ path('article_add') }}">Ajouter un nouvel article</a>
+
 
     <div class="container">
         {% if articles is defined %}
@@ -19,8 +21,8 @@
                     <h1>{{ article.title }}</h1>
                     <p>{{ article.content }}</p>
                     <p>{{ article.user }}</p>
-{#                    <a href="{{ path('/article_edit', {id: article.id}) }}">Editer</a>#}
-{#                    <a href="{{ path('article_delete', {id: article.id}) }}">Supprimer</a>#}
+                    <a href="{{ path('article_edit', {'id': article.id}) }}">Editer</a>
+                    <a href="{{ path('article_delete', {'id': article.id}) }}">Supprimer</a>
                 {% endif %}
             {% endfor %}
         {% endif %}

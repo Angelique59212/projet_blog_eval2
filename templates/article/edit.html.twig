@@ -4,7 +4,7 @@
 {% block body %}
     <div class="article">
 
-        <a href="{{ path('article_single', {id: article.id})  }}" class="article-content">
+        <a href="{{ path('article_edit', {id: article.id})  }}" class="article-content">
 
             <h1 class="article-title">{{ article.title }}</h1>
             <div class="article-content">{{ article.content | raw }}</div>
