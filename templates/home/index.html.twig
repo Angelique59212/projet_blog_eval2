@@ -6,10 +6,16 @@
 {% block body %}
     {{ Dialog.alert('Hello', 'warning') }}
 
-{#    <header>#}
-{#        <button><a href="{{ path('app_login') }}">Se connecter</a></button>#}
-{#        <button><a href="{{ path('app_register') }}">S'enregistrer</a></button>#}
-{#    </header>#}
+    <header>
+        {% if app.user %}
+            <button><a href="{{ path('app_logout') }}">Se déconnecter</a></button>
+
+            {% else %}
+                <button><a href="{{ path('app_login') }}">Se connecter</a></button>
+                <button><a href="{{ path('app_register') }}">S'enregistrer</a></button>
+        {% endif %}
+
+    </header>
 
     <a href="{{ path('article_add') }}">Ajouter un nouvel article</a>
 
