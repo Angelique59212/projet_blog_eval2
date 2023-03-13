@@ -5,4 +5,20 @@
 
 {% block body %}
     {{ Dialog.alert('Hello', 'warning') }}
+
+    <div class="container">
+        {% if articles is defined %}
+            {% for article in articles %}
+                {% if article.isPublished %}
+                    <h1>{{ article.title }}</h1>
+                    <p>{{ article.content }}</p>
+                    <p>{{ article.user }}</p>
+{#                    <a href="{{ path('/article/edit/{id}', {id: article.id}) }}">Editer</a>#}
+{#                    <a href="{{ path('article_delete', {id: article.id}) }}">Supprimer</a>#}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+    </div>
+
 {% endblock %}
