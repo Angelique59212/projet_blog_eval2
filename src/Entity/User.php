@@ -41,40 +41,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private Collection $comments;
 
 
-    /**
-     *
-     */
+
     public function __construct()
     {
         $this->articles = new ArrayCollection();
         $this->comments = new ArrayCollection();
     }
 
-    /**
-     * @return int|null
-     */
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    /**
-     * @return string|null
-     */
     public function getEmail(): ?string
     {
         return $this->email;
     }
 
-    /**
-     * @param string $email
-     * @return $this
-     */
     public function setEmail(string $email): self
     {
         $this->email = $email;
 
         return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString(): string
+    {
+        return $this->email;
     }
 
     /**
@@ -99,10 +95,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return array_unique($roles);
     }
 
-    /**
-     * @param array $roles
-     * @return $this
-     */
     public function setRoles(array $roles): self
     {
         $this->roles = $roles;
@@ -118,10 +110,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->password;
     }
 
-    /**
-     * @param string $password
-     * @return $this
-     */
     public function setPassword(string $password): self
     {
         $this->password = $password;
@@ -138,18 +126,11 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         // $this->plainPassword = null;
     }
 
-    /**
-     * @return bool
-     */
     public function isVerified(): bool
     {
         return $this->isVerified;
     }
 
-    /**
-     * @param bool $isVerified
-     * @return $this
-     */
     public function setIsVerified(bool $isVerified): self
     {
         $this->isVerified = $isVerified;
@@ -165,10 +146,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->articles;
     }
 
-    /**
-     * @param Article $article
-     * @return $this
-     */
     public function addArticle(Article $article): self
     {
         if (!$this->articles->contains($article)) {
@@ -179,10 +156,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @param Article $article
-     * @return $this
-     */
     public function removeArticle(Article $article): self
     {
         if ($this->articles->removeElement($article)) {
@@ -203,10 +176,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->comments;
     }
 
-    /**
-     * @param Comments $comment
-     * @return $this
-     */
     public function addComment(Comments $comment): self
     {
         if (!$this->comments->contains($comment)) {
@@ -217,10 +186,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @param Comments $comment
-     * @return $this
-     */
     public function removeComment(Comments $comment): self
     {
         if ($this->comments->removeElement($comment)) {
@@ -231,14 +196,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         }
 
         return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function __toString(): string
-    {
-        return $this->email;
     }
 
 }

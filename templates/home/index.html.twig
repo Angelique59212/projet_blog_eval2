@@ -6,6 +6,12 @@
 {% block body %}
     {{ Dialog.alert('Hello', 'warning') }}
 
+{#    <header>#}
+{#        <button><a href="{{ path('app_login') }}">Se connecter</a></button>#}
+{#        <button><a href="{{ path('app_register') }}">S'enregistrer</a></button>#}
+{#    </header>#}
+
+
     <div class="container">
         {% if articles is defined %}
             {% for article in articles %}
@@ -13,7 +19,7 @@
                     <h1>{{ article.title }}</h1>
                     <p>{{ article.content }}</p>
                     <p>{{ article.user }}</p>
-{#                    <a href="{{ path('/article/edit/{id}', {id: article.id}) }}">Editer</a>#}
+{#                    <a href="{{ path('/article_edit', {id: article.id}) }}">Editer</a>#}
 {#                    <a href="{{ path('article_delete', {id: article.id}) }}">Supprimer</a>#}
                 {% endif %}
             {% endfor %}

@@ -3,8 +3,11 @@
 namespace App\Form;
 
 use App\Entity\Article;
+
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -13,12 +16,29 @@ class ArticleType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('title')
-            ->add('content')
-            ->add('is_published')
+            ->add('title', TextType::class, [
+                'label_attr' => [
+                    'class' => 'title'
+                ]
+            ])
+            ->add('content', TextareaType::class, [
+                'attr' => [
+                    'rows' => 8,
+                    'cols' => 4,
+                    'maxlength' => 255,
+                    'minlength' => 10,
+                ],
+                'label_attr' => [
+                    'class' => 'title'
+                ]
+            ])
             ->add('user')
-            ->add('submit', SubmitType::class)
-        ;
+            ->add('submit', SubmitType::class, [
+                'label' => 'Sauvegarder'
+            ])
+            ->add('submit_draft', SubmitType::class, [
+                'label' => 'Sauvegarder comme brouillon'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
