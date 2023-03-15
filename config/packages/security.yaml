@@ -41,7 +41,7 @@ security:
     role_hierarchy:
         ROLE_AUTHOR: ROLE_USER
         ROLE_MODERATOR: ROLE_USER
-        ROLE_ADMIN: [ROLE_MODERATOR, ROLE AUTHOR],
+        ROLE_ADMIN: [ROLE_MODERATOR, ROLE_AUTHOR],
 
 when@test:
     security:

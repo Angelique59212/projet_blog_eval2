@@ -51,3 +51,13 @@
     -> Auteur
     -> Modérateur
     -> Administrateur
+
+__**--> Cours correspondant**__
+
+1. Ajouter public dans service pour les avatars
+2. Pour les articles (voir, modif, suppr) ==> **Gestion des routes**
+3. Pour l'avatar ==> **Autowiring**
+4. Messages success..., SideBar, Slug ==> **Gérer la partie front**
+5. Pour définir la route vers l'article, importer l'image ==> {{**path**}}
+6. Lever une exception si l'user n'a pas les droits ==> **Manipuler les données**
+7. Pour brouillon ==> **ispublished(boolean) + submit multiples**
