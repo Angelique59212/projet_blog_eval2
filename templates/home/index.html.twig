@@ -4,7 +4,10 @@
 {% block title %}Home !{% endblock %}
 
 {% block body %}
-    {{ Dialog.alert('Hello', 'warning') }}
+    {% if app.user %} <h1>{{ Dialog.alert('Bonjour' ~' '~ app.user.email, 'warning') }}</h1>
+        {% else%}
+            {{  Dialog.alert('Bonjour', 'warning') }}
+    {% endif %}
 
     <header>
         {% if app.user %}
