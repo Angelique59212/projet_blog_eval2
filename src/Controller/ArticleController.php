@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 
 
 class ArticleController extends AbstractController
@@ -33,7 +34,7 @@ class ArticleController extends AbstractController
     }
 
     #[Route('/article/add', name: 'article_add', methods: ['GET', 'POST'])]
-    public function add(Request $request):Response
+    public function add(Request $request, SluggerInterface $slugger):Response
     {
         if (!$this->isGranted('ROLE_AUTHOR'))
         {
@@ -48,6 +49,7 @@ class ArticleController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $article->setAuthor($this->userRepository->find($this->getUser()->getUserIdentifier()));
+            $article->setSlug(strtolower($slugger->slug($form['title']->getData().uniqid())));
             $published = $form->get('submit')->isClicked();
             $article->setIsPublished($published);
 
@@ -64,9 +66,9 @@ class ArticleController extends AbstractController
     }
 
     #[Route('article/edit/{id}', name: 'article_edit', methods: ['GET', 'POST'])]
-    public function edit(Article $article, Request $request): Response
+    public function edit(Article $article, Request $request, SluggerInterface $slugger): Response
     {
-        if (!$this->isGranted('ROLE_AUTHOR') || $this->getUser() !== $article->getAuthor())
+        if (!$this->isGranted('ROLE_AUTHOR'))
         {
             return $this->render('home/index.html.twig');
         }
@@ -87,6 +89,8 @@ class ArticleController extends AbstractController
             'article_form'=> $form->createView(),
         ]);
     }
+
+
 
     #[Route('article/delete/{id}', name: 'article_delete', methods: ['GET', 'DELETE'])]
     public function delete(Article $article, EntityManagerInterface $entityManager): Response

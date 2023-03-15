@@ -24,6 +24,9 @@ class Article
     #[ORM\Column]
     private ?bool $is_published = false;
 
+    #[ORM\Column(length: 255)]
+    private ?string $slug = null;
+
     #[ORM\ManyToOne(inversedBy: 'articles')]
     private ?User $author = null;
 
@@ -40,6 +43,23 @@ class Article
         return $this->id;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    /**
+     * @param string|null $slug
+     */
+    public function setSlug(?string $slug): self
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
     public function getTitle(): ?string
     {
         return $this->title;
@@ -50,6 +70,11 @@ class Article
         $this->title = $title;
 
         return $this;
+    }
+
+    public function __toString() :string
+    {
+        return $this->title;
     }
 
     public function getContent(): ?string
@@ -76,12 +101,12 @@ class Article
         return $this;
     }
 
-    public function getAuthor(): ?User
+    public function getAuthor(): ?user
     {
         return $this->author;
     }
 
-    public function setAuthor(?User $author): self
+    public function setAuthor(?user $author): self
     {
         $this->author = $author;
 

@@ -32,7 +32,7 @@ class ArticleType extends AbstractType
                     'class' => 'title'
                 ]
             ])
-            ->add('user')
+            ->add('author')
             ->add('submit', SubmitType::class, [
                 'label' => 'Sauvegarder'
             ])

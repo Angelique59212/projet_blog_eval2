@@ -28,6 +28,11 @@
                     <h1>{{ article.title }}</h1>
                     <p>{{ article.content }}</p>
                     <p>{{ article.author }}</p>
+                    {% if is_granted('ROLE_AUTHOR') %}
+                        <a href="{{ path('article_edit', {'id': article.id}) }}">Editer</a>
+                        <a href="{{ path('article_delete', {'id': article.id}) }}">Supprimer</a>
+                {% endif %}
+
                 {% endif %}
             {% endfor %}
         {% endif %}
