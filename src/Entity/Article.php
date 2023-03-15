@@ -25,7 +25,7 @@ class Article
     private ?bool $is_published = false;
 
     #[ORM\ManyToOne(inversedBy: 'articles')]
-    private ?User $user = null;
+    private ?User $author = null;
 
     #[ORM\OneToMany(mappedBy: 'article', targetEntity: Comments::class)]
     private Collection $comments;
@@ -76,14 +76,14 @@ class Article
         return $this;
     }
 
-    public function getUser(): ?user
+    public function getAuthor(): ?User
     {
-        return $this->user;
+        return $this->author;
     }
 
-    public function setUser(?user $user): self
+    public function setAuthor(?User $author): self
     {
-        $this->user = $user;
+        $this->author = $author;
 
         return $this;
     }

@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
+
 class ArticleController extends AbstractController
 {
     private EntityManagerInterface $entityManager;
@@ -31,16 +32,22 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/article/add', name: 'article_add')]
+    #[Route('/article/add', name: 'article_add', methods: ['GET', 'POST'])]
     public function add(Request $request):Response
     {
+        if (!$this->isGranted('ROLE_AUTHOR'))
+        {
+            return $this->redirectToRoute('home');
+        }
+
         $article = new Article();
+        $article->setAuthor($this->getUser());
         $form = $this->createForm(ArticleType::class, $article);
 
         $form->handleRequest($request); #hydrate the article object
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $article->setUser($this->userRepository->find($this->getUser()->getUserIdentifier()));
+            $article->setAuthor($this->userRepository->find($this->getUser()->getUserIdentifier()));
             $published = $form->get('submit')->isClicked();
             $article->setIsPublished($published);
 
@@ -56,9 +63,13 @@ class ArticleController extends AbstractController
         ]);
     }
 
-    #[Route('/article/edit/{id}', name: 'article_edit', methods: ['GET', 'POST'])]
+    #[Route('article/edit/{id}', name: 'article_edit', methods: ['GET', 'POST'])]
     public function edit(Article $article, Request $request): Response
     {
+        if (!$this->isGranted('ROLE_AUTHOR') || $this->getUser() !== $article->getAuthor())
+        {
+            return $this->render('home/index.html.twig');
+        }
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
 
@@ -80,6 +91,11 @@ class ArticleController extends AbstractController
     #[Route('article/delete/{id}', name: 'article_delete')]
     public function delete(Article $article, EntityManagerInterface $entityManager): Response
     {
+
+        if (!$this->isGranted('ROLE_AUTHOR') || $this->getUser() !== $article->getAuthor())
+        {
+            return $this->render('home/index.html.twig');
+        }
         $entityManager->remove($article);
         $entityManager->flush();
 
