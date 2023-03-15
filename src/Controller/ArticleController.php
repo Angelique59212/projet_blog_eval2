@@ -66,9 +66,9 @@ class ArticleController extends AbstractController
     }
 
     #[Route('article/edit/{id}', name: 'article_edit', methods: ['GET', 'POST'])]
-    public function edit(Article $article, Request $request, SluggerInterface $slugger): Response
+    public function edit(Article $article, Request $request): Response
     {
-        if (!$this->isGranted('ROLE_AUTHOR'))
+        if (!$this->isGranted('ROLE_MODERATOR'))
         {
             return $this->render('home/index.html.twig');
         }
@@ -96,14 +96,14 @@ class ArticleController extends AbstractController
     public function delete(Article $article, EntityManagerInterface $entityManager): Response
     {
 
-        if (!$this->isGranted('ROLE_AUTHOR') || $this->getUser() !== $article->getAuthor())
+        if (!$this->isGranted('ROLE_MODERATOR'))
         {
             return $this->render('home/index.html.twig');
         }
         $entityManager->remove($article);
         $entityManager->flush();
 
-        return $this->redirectToRoute("home");
+        return $this->redirectToRoute('home');
     }
 
 }

@@ -31,11 +31,20 @@
                     <h1>{{ article.title }}</h1>
                     <p>{{ article.content }}</p>
                     <p>{{ article.author }}</p>
+                    <a href="{{ path('comments_add', {id: article.id}) }}">Ajouter un commentaire</a>
                     {% if is_granted('ROLE_AUTHOR') %}
                         <a href="{{ path('article_edit', {'id': article.id}) }}">Editer</a>
                         <a href="{{ path('article_delete', {'id': article.id}) }}">Supprimer</a>
-                {% endif %}
-
+                    {% endif %}
+                    <h1>Commentaires: </h1>
+                    {% for comment in article.comments %}
+                        <p>{{ comment.content }}</p>
+                        <p>{{ comment.user.email }}</p>
+                        {% if is_granted('ROLE_MODERATOR') %}
+                            <a href="{{ path('comments_edit', {'id': article.id}) }}">Editer</a>
+                            <a href="{{ path('comments_delete', {'id': article.id}) }}">Supprimer</a>
+                        {% endif %}
+                    {% endfor %}
                 {% endif %}
             {% endfor %}
         {% endif %}

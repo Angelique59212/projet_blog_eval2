@@ -19,12 +19,12 @@ class Comments
     private ?string $content = null;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
+    #[ORM\JoinColumn(onDelete: 'SET NULL')]
     private ?User $user = null;
 
     #[ORM\ManyToOne(inversedBy: 'comments')]
+    #[ORM\JoinColumn(onDelete: 'CASCADE')]
     private ?Article $article = null;
-
-
 
     public function getId(): ?int
     {

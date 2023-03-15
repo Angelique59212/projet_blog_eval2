@@ -20,8 +20,6 @@
                     <td>{{ article.id }}</td>
                     <td>{{ article.title }}</td>
                     <td>{{ article.content }}</td>
-                    <td><a href="{{ path('article_edit', {'id': article.id}) }}">Editer</a></td>
-                    <td><a href="{{ path('article_visualize', {'id': article.id}) }}">Voir l'article</a></td>
                 </tr>
             {% endfor %}
         </tbody>
