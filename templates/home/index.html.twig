@@ -41,8 +41,8 @@
                         <p>{{ comment.content }}</p>
                         <p>{{ comment.user.email }}</p>
                         {% if is_granted('ROLE_MODERATOR') %}
-                            <a href="{{ path('comments_edit', {'id': article.id}) }}">Editer</a>
-                            <a href="{{ path('comments_delete', {'id': article.id}) }}">Supprimer</a>
+                            <a href="{{ path('comments_edit', {'id': comment.id}) }}">Editer</a>
+                            <a href="{{ path('comments_delete', {'id': comment.id}) }}">Supprimer</a>
                         {% endif %}
                     {% endfor %}
                 {% endif %}

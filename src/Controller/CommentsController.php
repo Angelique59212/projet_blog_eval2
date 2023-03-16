@@ -5,13 +5,11 @@ namespace App\Controller;
 use App\Entity\Article;
 use App\Entity\Comments;
 use App\Form\CommentsType;
-use App\Repository\CommentsRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\String\Slugger\SluggerInterface;
 
 class CommentsController extends AbstractController
 {
@@ -62,13 +60,14 @@ class CommentsController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $this->entityManager->persist($comments);
             $this->entityManager->flush();
             $this->addFlash('success', "Commentaire mis à jour");
 
             return $this->redirectToRoute('home');
         }
 
-        return $this->render('comments/edit.html.twig', [
+        return $this->render('comments/add.html.twig', [
             'comments_form' => $form->createView()
         ]);
     }
