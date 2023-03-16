@@ -92,4 +92,38 @@ class RegistrationController extends AbstractController
 
         return $this->redirectToRoute('home');
     }
+
+    #[Route('/register/edit/{id}', name: 'edit_user')]
+    public function edit(User $user, Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, AppAuthenticationAuthenticator $authenticator, EntityManagerInterface $entityManager): Response
+    {
+        if ($this->getUser() === $user) {
+            $form = $this->createForm(RegistrationFormType::class, $user);
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+                $user->setPassword(
+                    $userPasswordHasher->hashPassword(
+                        $user,
+                        $form->get('plainPassword')->getData()
+                    )
+                );
+
+                $entityManager->persist($user);
+                $entityManager->flush();
+
+                return $userAuthenticator->authenticateUser(
+                    $user,
+                    $authenticator,
+                    $request
+                );
+            }
+
+            return $this->render('registration/register.html.twig', [
+                'registrationForm' => $form->createView(),
+            ]);
+        }
+
+        return $this->render('user/profil.html.twig');
+
+    }
 }

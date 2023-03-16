@@ -9,13 +9,17 @@
             {{  Dialog.alert('Bonjour', 'warning') }}
     {% endif %}
 
+
+
     <header>
         {% if app.user %}
             {% if is_granted('ROLE_AUTHOR') %}
-                <a href="{{ path('article_add') }}">Ajouter un nouvel article</a>
+                <button class="btn btn-primary"><a class="color-text" href="{{ path('article_add') }}">Ajouter un nouvel article</a></button>
             {% endif %}
-
+            {% if is_granted('ROLE_ADMIN') %}<button class="btn btn-primary"><a class="color-text" href="/admin">{{ 'admin' }}</a></button>{% endif %}
+            <button class="btn btn-primary"><a class="color-text" href="{{ path('app_user') }}">Profil</a></button>
             <button class="btn btn-primary"><a class="color-text" href="{{ path('app_logout') }}">Se déconnecter</a></button>
+
 
             {% else %}
                 <button class="btn btn-primary"><a class="color-text" href="{{ path('app_login') }}">Se connecter</a></button>
