@@ -51,7 +51,7 @@ class RegistrationController extends AbstractController
             $file = $form['avatar']->getData();
             if ($file) {
                 $fileName = uniqid() . '.' . $file->guessExtension();
-                $file->move('avatar', $fileName);
+                $file->move('upload.directory', $fileName);
                 $user->setAvatar($fileName);
             } else {
                 $default = [
@@ -124,6 +124,22 @@ class RegistrationController extends AbstractController
                         $form->get('plainPassword')->getData()
                     )
                 );
+
+                $file = $form['avatar']->getData();
+                if ($file) {
+                    $fileName = uniqid() . '.' . $file->guessExtension();
+                    $file->move('upload.directory', $fileName);
+                    $user->setAvatar($fileName);
+                } else {
+                    $default = [
+                        'BMW.png',
+                        'default.png',
+                        'logo.png'
+                    ];
+                    $randomAvatar = array_rand($default);
+                    $user->setAvatar($default[$randomAvatar]);
+
+                }
 
                 $entityManager->persist($user);
                 $entityManager->flush();

@@ -8,7 +8,9 @@
 
     <div class="container-profil">
         <div class="article_draft">
-            {{  Dialog.alert('Profil: '~' '~ app.user.email, 'warning') }}
+            <h1>{{  Dialog.alert('Profil: '~' '~ app.user.email, 'warning') }}</h1>
+            <img src="upload.directory/{{ (app.user.avatar) }}" alt="" >
+
             <button class="btn btn-outline-primary"><a href="{{ path('edit_user', {'id': app.user.id }) }}">Modifier mon profil</a></button>
             <button class="btn btn-outline-primary"><a href="/">{{ 'home' }}</a></button>
             {% if is_granted('ROLE_AUTHOR') %}

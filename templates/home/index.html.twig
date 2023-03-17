@@ -5,7 +5,9 @@
 
 {% block body %}
     {% if app.user %} <h1>{{ Dialog.alert('Bonjour' ~' '~ app.user.email, 'warning') }}</h1>
-        {% else%}
+        <img src="upload.directory/{{ (app.user.avatar) }}" alt="" width="55vw" height="55vh">
+
+    {% else%}
             {{  Dialog.alert('Bonjour', 'warning') }}
     {% endif %}
 
@@ -31,6 +33,7 @@
             {% for article in articles %}
                 {% if article.isPublished %}
                     <h1>{{ article.title }}</h1>
+                    <img src="upload.directory/{{ (article.image) }}" alt="" width="155vw" height="95vh">
                     <p>{{ article.content }}</p>
                     <p>{{ article.author }}</p>
                     <a href="{{ path('comments_add', {id: article.id}) }}">Ajouter un commentaire</a>

@@ -52,6 +52,13 @@ class ArticleController extends AbstractController
             $published = $form->get('submit')->isClicked();
             $article->setIsPublished($published);
 
+            $file = $form['image']->getData();
+            if ($file) {
+                $fileName = uniqid() . '.' . $file->guessExtension();
+                $file->move('upload.directory', $fileName);
+                $article->setImage($fileName);
+            }
+
             $this->entityManager->persist($article); #consider my new article
             $this->entityManager->flush(); #send my article to the database
             $this->addFlash('success', "L'article a bien été ajouté");
@@ -77,6 +84,13 @@ class ArticleController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $published = $form->get('submit')->isClicked();
             $article->setIsPublished($published);
+
+            $file = $form['image']->getData();
+            if ($file) {
+                $fileName = uniqid() . '.' . $file->guessExtension();
+                $file->move('upload.directory', $fileName);
+                $article->setImage($fileName);
+            }
 
             $this->entityManager->flush();
             $this->addFlash('success', "L'article a bien été mise à jour");

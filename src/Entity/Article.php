@@ -27,6 +27,9 @@ class Article
     #[ORM\Column(length: 255)]
     private ?string $slug = null;
 
+    #[ORM\Column(type: "string", length: 255)]
+    private ?string $image;
+
     #[ORM\ManyToOne(inversedBy: 'articles')]
     private ?User $author = null;
 
@@ -143,5 +146,22 @@ class Article
         return $this;
     }
 
+    /**
+     * @return string|null
+     */
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param string|null $image
+     * @return Article
+     */
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
+        return $this;
+    }
 
 }

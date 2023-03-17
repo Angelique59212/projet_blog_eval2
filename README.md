@@ -17,7 +17,7 @@
 **--> Eval**
 
     ==> Chaque article a une image de couverture
-    ==> L'utilisateur possède un avatar, si il n'en met pas il y en a un par défaut
+    (==> L'utilisateur possède un avatar, si il n'en met pas il y en a un par défaut )
     ==> L'article en écriture s'enregistre en brouillon mais affiché en front
     ==> Tout le texte doit être en Anglais trad côté twig pour le français
     ==> il peut choisir sa langue
@@ -65,7 +65,7 @@
 
 __**--> Cours correspondant**__
 
-1. Ajouter public dans service pour les avatars
+1. Ajouter public dans service pour les avatars 
 2. Pour les articles (voir, modif, suppr) ==> **Gestion des routes**
 3. Pour l'avatar ==> **Autowiring**
 4. Messages success..., SideBar, Slug ==> **Gérer la partie front**
