@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Article;
-use App\Form\ArticleType;
+use App\Form\ArticleFormType;
 use App\Repository\ArticleRepository;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -42,7 +42,7 @@ class ArticleController extends AbstractController
 
         $article = new Article();
         $article->setAuthor($this->getUser());
-        $form = $this->createForm(ArticleType::class, $article);
+        $form = $this->createForm(ArticleFormType::class, $article);
 
         $form->handleRequest($request); #hydrate the article object
 
@@ -71,7 +71,7 @@ class ArticleController extends AbstractController
         {
             return $this->render('home/index.html.twig');
         }
-        $form = $this->createForm(ArticleType::class, $article);
+        $form = $this->createForm(ArticleFormType::class, $article);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

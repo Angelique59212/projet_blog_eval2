@@ -8,11 +8,22 @@
     ==> Utilisateur / Auteur:
         -> Ajout d'articles + commentaires
 
-    ==> Modérateur:
+    ==> Moderator:
         -> Editer + Suppression de commentaires + Ajout de commentaires
 
     ==> Administrateur:
         -> Ajout d'article + Ajout de comms + Editer / Supprimer des commentaires
+
+**--> Eval**
+
+    ==> Chaque article a une image de couverture
+    ==> L'utilisateur possède un avatar, si il n'en met pas il y en a un par défaut
+    ==> L'article en écriture s'enregistre en brouillon mais affiché en front
+    ==> Tout le texte doit être en Anglais trad côté twig pour le français
+    ==> il peut choisir sa langue
+    ==> slug généré pour le titre
+
+
 
 **--> Commencement**
 
