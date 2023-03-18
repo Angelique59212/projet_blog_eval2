@@ -17,7 +17,7 @@ class CommentsType extends AbstractType
             ->add('user')
             ->add('article')
             ->add('submit', SubmitType::class, [
-                'label' => 'Envoyer'
+                'label' => 'submit'
             ])
         ;
     }

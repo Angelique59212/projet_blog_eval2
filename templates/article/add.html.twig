@@ -1,10 +1,11 @@
 {% extends 'base.html.twig' %}
 {% import '_macros/alert.html.twig' as Dialog %}
 
-{% block title %} Ajouter un nouvel article {% endblock %}
+{% block title %} Add new item{% endblock %}
 
 {% block body %}
     <div class="add-article">
+        <h1>{{ 'Add new item' }}</h1>
         {{ form(article_form) }}
     </div>
 

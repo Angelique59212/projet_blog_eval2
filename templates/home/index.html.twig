@@ -36,18 +36,18 @@
                     <img src="upload.directory/{{ (article.image) }}" alt="" width="155vw" height="95vh">
                     <p>{{ article.content }}</p>
                     <p>{{ article.author }}</p>
-                    <a href="{{ path('comments_add', {id: article.id}) }}">Ajouter un commentaire</a>
+                    <a href="{{ path('comments_add', {id: article.id}) }}">Add a comment</a>
                     {% if is_granted('ROLE_AUTHOR') %}
-                        <a href="{{ path('article_edit', {'id': article.id}) }}">Editer</a>
-                        <a href="{{ path('article_delete', {'id': article.id}) }}">Supprimer</a>
+                        <a href="{{ path('article_edit', {'id': article.id}) }}">Edit</a>
+                        <a href="{{ path('article_delete', {'id': article.id}) }}">Delete</a>
                     {% endif %}
                     <h1>Commentaires: </h1>
                     {% for comment in article.comments %}
                         <p>{{ comment.content }}</p>
                         <p>{{ comment.user.email }}</p>
                         {% if is_granted('ROLE_MODERATOR') %}
-                            <a href="{{ path('comments_edit', {'id': comment.id}) }}">Editer</a>
-                            <a href="{{ path('comments_delete', {'id': comment.id}) }}">Supprimer</a>
+                            <a href="{{ path('comments_edit', {'id': comment.id}) }}">Edit</a>
+                            <a href="{{ path('comments_delete', {'id': comment.id}) }}">Delete</a>
                         {% endif %}
                     {% endfor %}
                 {% endif %}

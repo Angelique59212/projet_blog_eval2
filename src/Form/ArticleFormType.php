@@ -25,7 +25,7 @@ class ArticleFormType extends AbstractType
                 ]
             ])
             ->add('image', FileType::class, [
-                'label' => 'Image de couverture',
+                'label' => 'Cover image',
                 'mapped' => false,
                 'data_class' => null,
 
@@ -44,10 +44,10 @@ class ArticleFormType extends AbstractType
 
             ->add('author')
             ->add('submit', SubmitType::class, [
-                'label' => 'Sauvegarder'
+                'label' => 'Save'
             ])
             ->add('submit_draft', SubmitType::class, [
-                'label' => 'Sauvegarder comme brouillon'
+                'label' => 'Save as draft'
             ]);
     }
 
