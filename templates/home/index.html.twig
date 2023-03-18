@@ -14,16 +14,16 @@
     <header>
         {% if app.user %}
             {% if is_granted('ROLE_AUTHOR') %}
-                <button class="btn btn-primary"><a class="color-text" href="{{ path('article_add') }}">Ajouter un nouvel article</a></button>
+                <button class="btn btn-primary"><a class="color-text" href="{{ path('article_add') }}">{{ 'Add a new article'|trans }}</a></button>
             {% endif %}
             {% if is_granted('ROLE_ADMIN') %}<button class="btn btn-primary"><a class="color-text" href="/admin">{{ 'admin' }}</a></button>{% endif %}
             <button class="btn btn-primary"><a class="color-text" href="{{ path('app_user') }}">Profil</a></button>
-            <button class="btn btn-primary"><a class="color-text" href="{{ path('app_logout') }}">Se déconnecter</a></button>
+            <button class="btn btn-primary"><a class="color-text" href="{{ path('app_logout') }}">Logout</a></button>
 
 
             {% else %}
-                <button class="btn btn-primary"><a class="color-text" href="{{ path('app_login') }}">Se connecter</a></button>
-                <button class="btn btn-primary"><a class="color-text" href="{{ path('app_register') }}">S'enregistrer</a></button>
+                <button class="btn btn-primary"><a class="color-text" href="{{ path('app_login') }}">Login</a></button>
+                <button class="btn btn-primary"><a class="color-text" href="{{ path('app_register') }}">Register</a></button>
         {% endif %}
 
     </header>
@@ -32,21 +32,21 @@
         {% if articles is defined %}
             {% for article in articles %}
                 {% if article.isPublished %}
-                    <h1>{{ article.title }}</h1>
+                    <h1>{{ article.title  }}</h1>
                     <img src="upload.directory/{{ (article.image) }}" alt="" width="155vw" height="95vh">
                     <p>{{ article.content }}</p>
                     <p>{{ article.author }}</p>
-                    <a href="{{ path('comments_add', {id: article.id}) }}">Add a comment</a>
+                    <a href="{{ path('comments_add', {id: article.id}) }}">{{ 'Add a comment'|trans}}</a>
                     {% if is_granted('ROLE_AUTHOR') %}
                         <a href="{{ path('article_edit', {'id': article.id}) }}">Edit</a>
                         <a href="{{ path('article_delete', {'id': article.id}) }}">Delete</a>
                     {% endif %}
-                    <h1>Commentaires: </h1>
+                    <h1>Comments: </h1>
                     {% for comment in article.comments %}
                         <p>{{ comment.content }}</p>
                         <p>{{ comment.user.email }}</p>
                         {% if is_granted('ROLE_MODERATOR') %}
-                            <a href="{{ path('comments_edit', {'id': comment.id}) }}">Edit</a>
+                            <a href="{{ path('comments_edit', {'id': comment.id}) }}"></a>
                             <a href="{{ path('comments_delete', {'id': comment.id}) }}">Delete</a>
                         {% endif %}
                     {% endfor %}
