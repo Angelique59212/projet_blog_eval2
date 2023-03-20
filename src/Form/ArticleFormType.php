@@ -20,12 +20,13 @@ class ArticleFormType extends AbstractType
     {
         $builder
             ->add('title', TextType::class, [
+                'label' => 'Titre',
                 'label_attr' => [
                     'class' => 'title'
                 ]
             ])
             ->add('image', FileType::class, [
-                'label' => 'Cover image',
+                'label' => 'Image',
                 'mapped' => false,
                 'data_class' => null,
 
@@ -37,6 +38,7 @@ class ArticleFormType extends AbstractType
                     'maxlength' => 255,
                     'minlength' => 10,
                 ],
+                'label' => 'Contenu',
                 'label_attr' => [
                     'class' => 'title'
                 ]
@@ -44,10 +46,10 @@ class ArticleFormType extends AbstractType
 
             ->add('author')
             ->add('submit', SubmitType::class, [
-                'label' => 'Save'
+                'label' => 'Enregistrer'
             ])
             ->add('submit_draft', SubmitType::class, [
-                'label' => 'Save as draft'
+                'label' => 'Enregistrer en tant que brouillon'
             ]);
     }
 

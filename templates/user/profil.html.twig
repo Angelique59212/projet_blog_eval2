@@ -11,16 +11,16 @@
             <h1>{{  Dialog.alert('Profil: '~' '~ app.user.email, 'warning') }}</h1>
             <img src="upload.directory/{{ (app.user.avatar) }}" alt="" >
 
-            <button class="btn btn-outline-primary"><a href="{{ path('edit_user', {'id': app.user.id }) }}">Edit my profile</a></button>
-            <button class="btn btn-outline-primary"><a href="/">{{ 'home' }}</a></button>
+            <button class="btn btn-outline-primary"><a href="{{ path('edit_user', {'id': app.user.id }) }}">{{ 'Edit my profile' | trans }}</a></button>
+            <button class="btn btn-outline-primary"><a href="/">{{ 'home' | trans }}</a></button>
             {% if is_granted('ROLE_AUTHOR') %}
-                <h2>Draft articles: </h2>
+                <h2>{{ "Draft articles:" | trans}} </h2>
                 {% for article in app.user.articles %}
                     {% if not article.isPublished %}
                         <h1>{{ article.title }}</h1>
                         <p>{{ article.content }}</p>
-                        <a href="{{ path('article_edit', {'id': article.id}) }}">Edit</a>
-                        <a href="{{ path('article_delete', {'id': article.id}) }}">Delete</a>
+                        <a href="{{ path('article_edit', {'id': article.id}) }}">{{ 'Edit' | trans }}</a>
+                        <a href="{{ path('article_delete', {'id': article.id}) }}">{{ 'Delete' | trans }}</a>
                     {% endif %}
                 {% endfor %}
             {% endif %}
@@ -30,8 +30,8 @@
                 <div class="myComments">
                     {{ comment.content }}
 
-                    <a href="{{ path('comments_delete', {'id': comment.id}) }}">Delete comment</a>
-                    <a href=" {{ path('comments_edit', { 'id': comment.id }) }}">Edit comment</a>
+                    <a href="{{ path('comments_delete', {'id': comment.id}) }}">{{ 'Delete comment' | trans }}</a>
+                    <a href=" {{ path('comments_edit', { 'id': comment.id }) }}">{{ 'Edit comment' | trans }}</a>
                 </div>
             {% endfor %}
         </div>

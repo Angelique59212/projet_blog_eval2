@@ -8,7 +8,7 @@
     {% endfor %}
 
     <div class="register">
-        <h1>Register</h1>
+        <h1>{{ "Register" | trans }}</h1>
 
         {{ form_start(registrationForm) }}
         {{ form_row(registrationForm.email) }}
