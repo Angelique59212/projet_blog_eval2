@@ -31,6 +31,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private string $password;
 
+    private ?string $langage;
+
+    /**
+     * @return string|null
+     */
+    public function getLangage(): ?string
+    {
+        return $this->langage;
+    }
+
+    /**
+     * @param string|null $langage
+     */
+    public function setLangage(?string $langage): self
+    {
+        $this->langage = $langage;
+
+        return $this;
+    }
+
     #[ORM\Column(type: 'boolean')]
     private $isVerified = false;
 
