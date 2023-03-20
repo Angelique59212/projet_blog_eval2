@@ -72,3 +72,4 @@ __**--> Cours correspondant**__
 5. Pour définir la route vers l'article, importer l'image ==> {{**path**}}
 6. Lever une exception si l'user n'a pas les droits ==> **Manipuler les données**
 7. Pour brouillon ==> **ispublished(boolean) + submit multiples**
+8. Choisir langue ==> **form**
