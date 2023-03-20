@@ -44,16 +44,19 @@
                         <a href="{{ path('comments_add', {id: article.id}) }}">{{ 'Add a comment'|trans}}</a>
                         {% if is_granted('ROLE_AUTHOR') %}
                             <a href="{{ path('article_edit', {'id': article.id}) }}">{{ 'Edit' | trans }}</a>
-                            <a href="{{ path('article_delete', {'id': article.id}) }}">{{ 'Delete' | trans }}</a>
+                            <a  href="{{ path('article_delete', {'id': article.id}) }}">{{ 'Delete' | trans }}</a>
                         {% endif %}
                         <h1 class="comments">Commentaires: </h1>
                         {% for comment in article.comments %}
-                            <p>{{ comment.content }}</p>
-                            <p>{{ comment.user.email }}</p>
-                            {% if is_granted('ROLE_MODERATOR') %}
-                                <a href="{{ path('comments_edit', {'id': comment.id}) }}"></a>
-                                <a href="{{ path('comments_delete', {'id': comment.id}) }}">{{ 'Delete' | trans }}</a>
-                            {% endif %}
+                            <div class="content-comm">
+                                <p>{{ comment.content }}</p>
+                                <p>{{ comment.user.email }}</p>
+                                {% if is_granted('ROLE_MODERATOR') %}
+                                    <a href="{{ path('comments_edit', {'id': comment.id}) }}"></a>
+                                    <a href="{{ path('comments_delete', {'id': comment.id}) }}">{{ 'Delete' | trans }}</a>
+                                {% endif %}
+                            </div>
+
                         {% endfor %}
                     </div>
 

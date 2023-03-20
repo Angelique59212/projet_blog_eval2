@@ -4,6 +4,9 @@
 {% block title %} {{ 'Add new item' | trans }}{% endblock %}
 
 {% block body %}
+    <div class="button-add">
+        <button class="btn btn-primary"><a class="color-text" href="/">{{ 'home' | trans }}</a></button>
+    </div>
     <div class="add-article">
         <h1>{{ 'Add new item' | trans }}</h1>
         {{ form(article_form) }}

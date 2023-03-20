@@ -4,6 +4,9 @@
 {% block title %} {{ 'Add a comment' | trans }} {% endblock %}
 
 {% block body %}
+    <div class="button-add">
+        <button class="btn btn-primary"><a class="color-text" href="/">{{ 'home' | trans }}</a></button>
+    </div>
     <div class="add-comments">
         <h1>{{ 'Add new comment' | trans }}</h1>
         {{ form(comments_form) }}

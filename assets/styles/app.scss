@@ -4,14 +4,12 @@
   @extend .reset;
 }
 
-html {
-  font-size: 62.5%;
-}
 
 body {
   background-color: rgba(42, 41, 41, 0.92);
   color:floralwhite;
-  font-size: 2rem;
+  font-size: 1.2rem;
+  font-family: Arial,sans-serif;
 }
 
 //Alert
@@ -76,6 +74,15 @@ body {
   .comments, .author {
     margin-top: 2rem;
   }
+
+  .comments {
+    text-decoration: underline;
+    text-align: vars.$text-align;
+  }
+
+  .content-comm {
+    margin: 3rem;
+  }
 }
 
 .register {
@@ -102,18 +109,22 @@ body {
 }
 
 //Add-article and comments
-.add-article, .add-comments {
+.add-article, .add-comments, .content-register, .contain-login {
   border: 1px solid blanchedalmond;
   padding: vars.$padding;
-  margin: 7rem;
+  margin: 3rem;
   width: 50vw;
 
   h1 {
-    margin: 2rem;
     padding: vars.$padding;
     text-align: vars.$text-align;
     text-transform: vars.$text-transform;
   }
+}
+
+.button-add {
+  text-align: vars.$text-align;
+  margin: 1.2rem;
 }
 
 
@@ -134,10 +145,39 @@ header {
   padding: vars.$padding;
 
   button {
-    margin-right: 3rem;
+    margin-right: vars.$margin-right;
+
     a {
-      font-size: 1.5rem;
+      font-size: vars.$font-size;
     }
+  }
+}
+
+//Profil
+.container-profil {
+  a {
+    font-size: vars.$font-size;
+  }
+
+  .button-profil {
+    @extend .flex;
+    padding: vars.$padding;
+
+    button {
+      margin-right: vars.$margin-right;
+    }
+  }
+  .title-draft {
+    margin: 3rem;
+    font-size: 3rem;
+    font-weight: vars.$font-weight;
+  }
+}
+
+//Login
+.contain-login {
+  input {
+    margin: 0.8rem;
   }
 }
 
