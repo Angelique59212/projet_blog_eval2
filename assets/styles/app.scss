@@ -1,23 +1,146 @@
-#article , .register {
+@use "./modules/vars";
+
+* {
+  @extend .reset;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  background-color: rgba(42, 41, 41, 0.92);
+  color:floralwhite;
+  font-size: 2rem;
+}
+
+//Alert
+.alert-warning {
+  --bs-alert-color: #664d03;
+  --bs-alert-bg: #f3f0e6;
+  --bs-alert-border-color: #faf2da;
+}
+.alert {
+  color: #9d9a95;
+  width: 50vw;
+  padding: 1rem;
+  display: block;
+  text-align: vars.$text-align;
+  margin: 1rem auto;
+  font-weight: vars.$font-weight;
+
+  .alert-success{
+    background-color: lightgreen;
+  }
+
+  .alert-danger {
+    background-color: indianred;
+  }
+
+  #close {
+    background-color: #d1e7dd;
+  }
+}
+
+//Article and register
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+.content-art {
+  width: 35vw;
+  margin: 5rem;
+  padding: vars.$padding;
+  border: 1px dashed #f1e2e5;
+
+  .title-article {
+    text-transform: vars.$text-transform;
+    padding: 0.8rem;
+    text-align: vars.$text-align;
+  }
+
+  .image-cover {
+    margin: 0.8rem;
+    text-align: vars.$text-align;
+
+    #image {
+      width: 25vw;
+      height: 50vh;
+    }
+  }
+
+  .author {
+    font-style: italic;
+  }
+
+  .comments, .author {
+    margin-top: 2rem;
+  }
+}
+
+.register {
   width: 50rem;
   margin: 1rem;
-  padding: 2rem;
+  padding: vars.$padding;
 }
 
 .title {
-   color: #030365;
+   color: #f5f5f8;
  }
 
 .register {
   h1 {
     margin: 2rem;
     color: #757583;
-    font-weight: bold;
+    font-weight: vars.$font-weight;
   }
 }
 
 .color-text {
-  color: #3a3636;
-  font-weight: bold;
+  color: #faf4f4;
+  font-weight: vars.$font-weight;
 }
+
+//Add-article and comments
+.add-article, .add-comments {
+  border: 1px solid blanchedalmond;
+  padding: vars.$padding;
+  margin: 7rem;
+  width: 50vw;
+
+  h1 {
+    margin: 2rem;
+    padding: vars.$padding;
+    text-align: vars.$text-align;
+    text-transform: vars.$text-transform;
+  }
+}
+
+
+//Avatar
+#contain-avatar {
+  @extend .flex;
+
+  #avatar {
+    width: 15vw;
+    height: 15vh;
+    margin: 0 auto;
+  }
+}
+
+//Header
+header {
+  @extend .flex;
+  padding: vars.$padding;
+
+  button {
+    margin-right: 3rem;
+    a {
+      font-size: 1.5rem;
+    }
+  }
+}
+
+
+
 

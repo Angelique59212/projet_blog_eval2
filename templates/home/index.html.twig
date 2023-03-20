@@ -4,9 +4,11 @@
 {% block title %}Home !{% endblock %}
 
 {% block body %}
-    {% if app.user %} <h1>{{ Dialog.alert('Bonjour' ~' '~ app.user.email, 'warning') }}</h1>
-        <img src="upload.directory/{{ (app.user.avatar) }}" alt="" width="55vw" height="55vh">
 
+    {% if app.user %} <h1>{{ Dialog.alert('Bonjour' ~' '~ app.user.email, 'warning') }}</h1>
+        <div id="contain-avatar">
+            <img id="avatar" src="upload.directory/{{ (app.user.avatar) }}" alt="" >
+        </div>
     {% else%}
             {{  Dialog.alert('Bonjour', 'warning') }}
     {% endif %}
@@ -32,24 +34,29 @@
         {% if articles is defined %}
             {% for article in articles %}
                 {% if article.isPublished %}
-                    <h1>{{ article.title  }}</h1>
-                    <img src="upload.directory/{{ (article.image) }}" alt="" width="155vw" height="95vh">
-                    <p>{{ article.content }}</p>
-                    <p>{{ article.author }}</p>
-                    <a href="{{ path('comments_add', {id: article.id}) }}">{{ 'Add a comment'|trans}}</a>
-                    {% if is_granted('ROLE_AUTHOR') %}
-                        <a href="{{ path('article_edit', {'id': article.id}) }}">{{ 'Edit' | trans }}</a>
-                        <a href="{{ path('article_delete', {'id': article.id}) }}">{{ 'Delete' | trans }}</a>
-                    {% endif %}
-                    <h1>Comments: </h1>
-                    {% for comment in article.comments %}
-                        <p>{{ comment.content }}</p>
-                        <p>{{ comment.user.email }}</p>
-                        {% if is_granted('ROLE_MODERATOR') %}
-                            <a href="{{ path('comments_edit', {'id': comment.id}) }}"></a>
-                            <a href="{{ path('comments_delete', {'id': comment.id}) }}">{{ 'Delete' | trans }}</a>
+                    <div class="content-art">
+                        <h1 class="title-article">{{ article.title  }}</h1>
+                        <div class="image-cover">
+                            <img id="image" src="upload.directory/{{ (article.image) }}" alt="">
+                        </div>
+                        <p>{{ article.content }}</p>
+                        <p class="author">{{ article.author }}</p>
+                        <a href="{{ path('comments_add', {id: article.id}) }}">{{ 'Add a comment'|trans}}</a>
+                        {% if is_granted('ROLE_AUTHOR') %}
+                            <a href="{{ path('article_edit', {'id': article.id}) }}">{{ 'Edit' | trans }}</a>
+                            <a href="{{ path('article_delete', {'id': article.id}) }}">{{ 'Delete' | trans }}</a>
                         {% endif %}
-                    {% endfor %}
+                        <h1 class="comments">Commentaires: </h1>
+                        {% for comment in article.comments %}
+                            <p>{{ comment.content }}</p>
+                            <p>{{ comment.user.email }}</p>
+                            {% if is_granted('ROLE_MODERATOR') %}
+                                <a href="{{ path('comments_edit', {'id': comment.id}) }}"></a>
+                                <a href="{{ path('comments_delete', {'id': comment.id}) }}">{{ 'Delete' | trans }}</a>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+
                 {% endif %}
             {% endfor %}
         {% endif %}

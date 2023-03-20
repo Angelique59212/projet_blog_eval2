@@ -18,6 +18,7 @@
         {% for message in messages %}
             <div class="alert alert-{{ type }}">
                 {{ message }}
+                <button id="close">x</button>
             </div>
         {% endfor %}
     {% endfor %}

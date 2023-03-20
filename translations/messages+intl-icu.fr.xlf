@@ -77,6 +77,14 @@
         <source>Add new item</source>
         <target>Ajouter un nouvel article</target>
       </trans-unit>
+      <trans-unit id="nWMiwfT" resname="Login">
+        <source>Login</source>
+        <target>Connexion</target>
+      </trans-unit>
+      <trans-unit id="pGaCpL1" resname="Add new comment">
+        <source>Add new comment</source>
+        <target>Ajouter un commentaire</target>
+      </trans-unit>
     </body>
   </file>
 </xliff>

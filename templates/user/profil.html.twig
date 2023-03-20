@@ -9,7 +9,9 @@
     <div class="container-profil">
         <div class="article_draft">
             <h1>{{  Dialog.alert('Profil: '~' '~ app.user.email, 'warning') }}</h1>
-            <img src="upload.directory/{{ (app.user.avatar) }}" alt="" >
+            <div id="contain-avatar">
+                <img id="avatar" src="upload.directory/{{ (app.user.avatar) }}" alt="" >
+            </div>
 
             <button class="btn btn-outline-primary"><a href="{{ path('edit_user', {'id': app.user.id }) }}">{{ 'Edit my profile' | trans }}</a></button>
             <button class="btn btn-outline-primary"><a href="/">{{ 'home' | trans }}</a></button>

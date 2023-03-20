@@ -19,7 +19,7 @@
     (==> Chaque article a une image de couverture)
     (==> L'utilisateur possède un avatar, si il n'en met pas il y en a un par défaut )
     (==> L'article en écriture s'enregistre en brouillon)
-    ==> Tout le texte doit être en Anglais trad côté twig pour le français
+    (==> Tout le texte doit être en Anglais trad côté twig pour le français)
     ==> il peut choisir sa langue
     (==> slug généré pour le titre)
 

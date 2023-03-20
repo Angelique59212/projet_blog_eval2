@@ -15,7 +15,12 @@ class CommentsType extends AbstractType
     {
         $builder
             ->add('content', TextareaType::class, [
-                'label' => 'Contenu'
+                'label' => 'Contenu',
+                'attr' => [
+                    'rows' => 10,
+                    'cols' => 10
+                ]
+
             ])
 
             ->add('user')

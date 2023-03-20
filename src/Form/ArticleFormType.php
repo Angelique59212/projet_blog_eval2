@@ -33,8 +33,8 @@ class ArticleFormType extends AbstractType
             ])
             ->add('content', TextareaType::class, [
                 'attr' => [
-                    'rows' => 8,
-                    'cols' => 4,
+                    'rows' => 10,
+                    'cols' => 10,
                     'maxlength' => 255,
                     'minlength' => 10,
                 ],
@@ -43,13 +43,12 @@ class ArticleFormType extends AbstractType
                     'class' => 'title'
                 ]
             ])
-
             ->add('author')
             ->add('submit', SubmitType::class, [
-                'label' => 'Enregistrer'
+                'label' => 'Enregistrer',
             ])
             ->add('submit_draft', SubmitType::class, [
-                'label' => 'Enregistrer en tant que brouillon'
+                'label' => 'Enregistrer en tant que brouillon',
             ]);
     }
 
